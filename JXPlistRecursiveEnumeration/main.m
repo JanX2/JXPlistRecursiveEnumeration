@@ -20,6 +20,8 @@ static NSString * const kFileNameKey = @"JXPlistRecursiveEnumerationFileName";
 static NSString * const kFilePathKey = @"JXPlistRecursiveEnumerationFilePath";
 static NSString * const kFileDateKey = @"JXPlistRecursiveEnumerationFileModificationDate";
 
+static NSString * const	UndefinedPathString					= @"/";
+
 
 void printUsage() {
 	printf("Usage: JXPlistRecursiveEnumeration <file.plist> [<file2.plist>]\n\n");
@@ -56,6 +58,9 @@ void dumpPlistRootedIn(id rootObj, JXPlistDumpOptions options) {
 			 }
 			 
 			 path = [pathComponentsUsed componentsJoinedByString:@"/"];
+			 if (path.length == 0) {
+				 path = UndefinedPathString;
+			 }
 			 
 			 [pathSet addObject:path];
 			 
