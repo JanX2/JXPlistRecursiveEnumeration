@@ -39,6 +39,14 @@ void dumpPlistRootedIn(id rootObj, JXPlistDumpOptions options) {
 	 ^(id node, JXPlistNodeType nodeType, JXPlistPosition position, NSArray *pathComponents) {
 		 const NSUInteger level = pathComponents.count;
 		 
+		 if ((options & JXPlistDumpExcludeFirstPathSegment) &&
+			 (level == 1) &&
+			 ((position == JXPlistPositionNode) ||
+			  ((nodeType == JXPlistNodeTypeNSDictionary) &&
+			  (position == JXPlistPositionCollectionStart)))) {
+				 [string appendFormat:@"%@" "\t" "%@" "\n", @"row key", [pathComponents objectAtIndex:0]];
+			 }
+		 
 		 if ((nodeType != JXPlistNodeTypeNSArray) &&
 			 (nodeType != JXPlistNodeTypeNSDictionary) &&
 			 (position == JXPlistPositionNode)) {
