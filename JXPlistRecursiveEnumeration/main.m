@@ -88,7 +88,7 @@ int main(int argc, const char * argv[]) {
 		NSError *error;
 		
 		JXPlistDumpOptions dumpOptions =
-		JXPlistDumpExcludeFirstPathSegment;
+		JXPlistDumpExcludeFirstPathSegment;//kNilOptions;
 		
 		NSArray *processArguments = [[NSProcessInfo processInfo] arguments];
 		NSUInteger argumentCount = processArguments.count;
