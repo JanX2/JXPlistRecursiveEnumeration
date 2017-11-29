@@ -70,9 +70,11 @@ void dumpPlistRootedIn(id rootObj, JXPlistDumpOptions options) {
 		 }
 	 }];
 	
+	printf("Results:\n");
 	printf("%s", [string UTF8String]);
-	
 	printf("\n");
+	
+	printf("Unique paths:\n");
 	printf("%s", [[pathSet description] UTF8String]);
 }
 
