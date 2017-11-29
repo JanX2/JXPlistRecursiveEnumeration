@@ -35,7 +35,7 @@ void dumpPlistRootedIn(id rootObj, JXPlistDumpOptions options) {
 	[rootObj recursiveEnumerationWithPathComponents:pathComponents
 									   visitorBlock:
 	 ^(id node, JXPlistNodeType nodeType, JXPlistPosition position, NSArray *pathComponents) {
-		 const NSUInteger pathComponentsCount = pathComponents.count;
+		 const NSUInteger level = pathComponents.count;
 		 
 		 if ((nodeType != JXPlistNodeTypeNSArray) &&
 			 (nodeType != JXPlistNodeTypeNSDictionary) &&
@@ -47,7 +47,7 @@ void dumpPlistRootedIn(id rootObj, JXPlistDumpOptions options) {
 			 
 			 if ((options & JXPlistDumpExcludeFirstPathSegment)) {
 				 const NSUInteger offset = 1;
-				 NSRange tailRange = NSMakeRange(offset, pathComponentsCount - offset);
+				 NSRange tailRange = NSMakeRange(offset, level - offset);
 				 NSArray *pathComponentsTail = [pathComponents subarrayWithRange:tailRange];
 				 pathComponentsUsed = pathComponentsTail;
 			 }
@@ -63,7 +63,7 @@ void dumpPlistRootedIn(id rootObj, JXPlistDumpOptions options) {
 			 [string appendFormat:@"%@" "\t" "%@" "\n", path, description];
 		 }
 		 else {
-			 if ((pathComponentsCount == 1) &&
+			 if ((level == 1) &&
 				 (position == JXPlistPositionCollectionEnd)) {
 				 [string appendString:@"\n"];
 			 }
