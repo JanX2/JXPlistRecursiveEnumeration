@@ -63,8 +63,8 @@ void dumpPlistRootedIn(id rootObj, JXPlistDumpOptions options) {
 			 [string appendFormat:@"%@" "\t" "%@" "\n", path, description];
 		 }
 		 else {
-			 if ((level == 1) &&
-				 (position == JXPlistPositionCollectionEnd)) {
+			 if ((level == 0) &&
+				 (position == JXPlistPositionNodeAfter)) {
 				 [string appendString:@"\n"];
 			 }
 		 }
